@@ -1,0 +1,77 @@
+import java.util.Scanner;
+
+public class Tabla_de_videojuegos {
+    //***** atributos ***
+    static String nombreVideojuego;    
+    //arreglo de nombres:
+    static String nombresJugadores[];    
+    static int pos[];
+    //matriz de puntajes:
+    static int puntajes[][];    
+    //promedios:
+    static float promPuntos, promHP;    
+    //constante para el número de jugadores:
+    static final int NUM_JUGADORES = 10;    
+    static int j = 0;
+
+    //***** métodos
+    public static void main(String[] args) {
+        // Inicializar matrices
+        nombresJugadores = new String[NUM_JUGADORES];
+        puntajes = new int[NUM_JUGADORES][2];
+
+        pedirNombreVJ();
+        leerDatos();
+        calcularPromedios();
+        mostrarPromedios();
+    }
+    
+    public static void pedirNombreVJ() {
+        //se crea objeto para leer por consola:
+        Scanner lectorConsola = new Scanner(System.in);
+        System.out.println("Ingrese el nombre del videojuego:");
+        nombreVideojuego = lectorConsola.next();        
+    }
+    
+    //LEER NOMBRES DE JUGADORES Y PUNTAJES:
+    ///TAREA: terminar método (leer puntajes)
+    public static void leerDatos() {
+        Scanner lectorConsola = new Scanner(System.in);
+        //recorrer arreglo:
+        for(int i = 0; i < NUM_JUGADORES; i++) {       
+            System.out.println("Ingrese el nombre del jugador:");
+            //leer cada nombre:
+            nombresJugadores[i] = lectorConsola.next();
+            
+            //leer puntos:
+            System.out.println("Ingrese el puntaje del jugador:");
+            puntajes[i][0] = lectorConsola.nextInt();
+            
+            //Leer Hp
+            System.out.println("Ingrese el numero de HP:");
+            puntajes[i][1] = lectorConsola.nextInt();
+        }
+    }   
+    
+    //TAREA:
+    public static void calcularPromedios() {
+        // recorrer matriz de puntajes
+        int suma_ptos = 0, suma_hps = 0;
+        
+        for (int i = 0; i < NUM_JUGADORES; i++) {
+            //sumar los puntajes y HP
+            suma_ptos += puntajes[i][0];
+            suma_hps += puntajes[i][1];
+        }
+        //dividir la suma entre el numero jugadores
+    
+        promPuntos = (float) suma_ptos / NUM_JUGADORES;
+        promHP = (float) suma_hps / NUM_JUGADORES;
+    }
+    
+    //TAREA:
+    public static void mostrarPromedios() {
+        System.out.println("El promedio de HP es " + promHP);
+        System.out.println("El promedio de puntos es " + promPuntos);
+    }
+}
