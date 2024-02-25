@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Liebre_tortuga {
+
+    static String Nombre_maraton;
+    static String[] Tortuga;
+    static String[] nombre_animal;
+    static int[] Pasos_Tortuga;
+    static int[] Pasos_Liebre;
+    static String[] Liebre;
+    static int meta = 20;
+
+    public static void main(String[] args) {
+        pedir_nombre_del_maraton();
+        pedir_pasos();
+        determinar_ganador();
+    }
+
+    public static void pedir_nombre_del_maraton() {
+        Scanner lectorConsola = new Scanner(System.in);
+
+        System.out.println("Escribe el nombre del maraton:");
+        Nombre_maraton = lectorConsola.nextLine();
+    }
+
+    public static void pedir_pasos() {
+        Scanner lectorConsola = new Scanner(System.in);
+
+        Tortuga = new String[meta];
+        Liebre = new String[meta];
+        nombre_animal = new String[meta];
+        Pasos_Tortuga = new int[meta];
+        Pasos_Liebre = new int[meta];
+
+        for (int i = 0; i < meta; i++) {
+            System.out.println("Ingrese los pasos de la Tortuga:");
+            Pasos_Tortuga[i] = lectorConsola.nextInt();
+            System.out.println("Ingrese los pasos de la Liebre:");
+            Pasos_Liebre[i] = lectorConsola.nextInt();
+
+            if (sumarPasos(Pasos_Tortuga, i) >= meta || sumarPasos(Pasos_Liebre, i) >= meta) {
+                break;
+            }
+        }
+    }
+
+    public static int sumarPasos(int[] pasos, int index) {
+        int suma = 0;
+        for (int i = 0; i <= index; i++) {
+            suma += pasos[i];
+        }
+        return suma;
+    }
+
+    public static void determinar_ganador() {
+        if (sumarPasos(Pasos_Tortuga, meta - 1) >= meta && sumarPasos(Pasos_Liebre, meta - 1) >= meta) {
+            System.out.println("Hubo un empate entre la tortuga y la liebre.");
+        } else if (sumarPasos(Pasos_Tortuga, meta - 1) >= meta) {
+            System.out.println("La tortuga llegó a la meta.");
+        } else if (sumarPasos(Pasos_Liebre, meta - 1) >= meta) {
+            System.out.println("La liebre llegó a la meta.");
+        } else {
+            System.out.println("Ningún animal llegó a la meta.");
+        }
+    }
+}
