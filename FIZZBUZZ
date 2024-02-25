@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class FizzBuzz {
+
+    public static void main(String[] args) {
+        pedir_numeros();
+    }
+
+    public static void pedir_numeros() {
+        Scanner lectorConsola = new Scanner(System.in);
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println("Ingrese un número del 1 al 100 (ingrese 0 para terminar):");
+            int numero = lectorConsola.nextInt();
+
+            if (numero == 0) {
+                System.out.println("Programa terminado.");
+                break;
+            }
+
+            if (numero < 1 || numero > 100) {
+                System.out.println("Número fuera de rango. Ingrese un número del 1 al 100.");
+            } else {
+                String resultado = "";
+
+                if (numero % 3 == 0) {
+                    resultado += "Fizz ";
+                }
+                if (numero % 5 == 0) {
+                    resultado += "Buzz ";
+                }
+                if (resultado.isEmpty()) {
+                    System.out.println(numero);
+                } else {
+                    System.out.println(resultado);
+                }
+            }
+        }
+    }
+}
