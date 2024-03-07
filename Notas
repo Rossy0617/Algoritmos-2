@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class PromedioNotas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la cantidad de estudiantes: ");
+        int cantidadEstudiantes = scanner.nextInt();
+
+        // Creamos un arreglo para almacenar las notas
+        double[] notas = new double[cantidadEstudiantes];
+
+        // Solicitamos al usuario que ingrese las notas de cada estudiante
+        for (int i = 0; i < cantidadEstudiantes; i++) {
+            System.out.print("Ingrese la nota del estudiante " + (i + 1) + ": ");
+            notas[i] = scanner.nextDouble();
+        }
+
+        // Calculamos la suma de las notas
+        double sumaNotas = 0;
+        for (double nota : notas) {
+            sumaNotas += nota;
+        }
+
+        // Calculamos el promedio
+        double promedio = sumaNotas / cantidadEstudiantes;
+
+        // Mostramos el promedio
+        System.out.println("El promedio de las notas es: " + promedio);
+
+        scanner.close();
+    }
+}
