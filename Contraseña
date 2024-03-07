@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class Contraseña {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitar la contraseña al usuario
+        System.out.println("Ingrese la contraseña:");
+        String password = scanner.nextLine();
+
+        // Contar el número de caracteres distintos
+        boolean[] visited = new boolean[256]; // Suponiendo caracteres ASCII
+        int distinctCount = 0;
+        for (int i = 0; i < password.length(); i++) {
+            char c = password.charAt(i);
+            if (!visited[c]) {
+                distinctCount++;
+                visited[c] = true;
+            }
+        }
+
+        // Determinar si la contraseña es segura o no
+        if (distinctCount % 2 == 0) {
+            System.out.println("La contraseña es insegura.");
+        } else {
+            System.out.println("La contraseña es segura.");
+        }
+    }
+}
